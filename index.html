@@ -4,11 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Jagadeesh Chittineedi — Interactive Portfolio</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
   <style>
     :root{
       --bg:#0f1724;
@@ -17,217 +20,117 @@
       --muted:#94a3b8;
       --glass: rgba(255,255,255,0.03);
       --radius:18px;
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial;
       color-scheme: dark;
     }
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#071028);color:#e6eef8}
+    html,body{margin:0;background:linear-gradient(180deg,var(--bg),#071028);color:#e6eef8}
     a{color:var(--accent);text-decoration:none}
     .container{max-width:1100px;margin:0 auto;padding:36px}
 
     /* HERO */
     .hero{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:center;margin-bottom:28px}
-    .hero-card{background:linear-gradient(135deg,rgba(125,211,252,0.04),transparent);padding:36px;border-radius:var(--radius);backdrop-filter:blur(6px);box-shadow:0 6px 30px rgba(0,0,0,0.6)}
-    .name{font-size:28px;font-weight:800;letter-spacing:0.4px;margin:0}
-    .title{color:var(--muted);margin-top:6px;margin-bottom:16px}
+    .hero-card{background:linear-gradient(135deg,rgba(125,211,252,0.04),transparent);padding:36px;border-radius:18px;backdrop-filter:blur(6px);box-shadow:0 6px 30px rgba(0,0,0,0.6)}
+    .name{font-size:28px;font-weight:800;margin:0}
+    .title{color:var(--muted);margin:6px 0 16px}
     .summary{line-height:1.6;color:#dbeafe}
-    .cta{margin-top:18px;display:flex;gap:12px}
+    .cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
     .btn{background:transparent;border:1px solid rgba(125,211,252,0.18);padding:10px 14px;border-radius:12px;cursor:pointer}
     .btn-primary{background:linear-gradient(90deg,var(--accent),#60a5fa);color:#041024;border:0}
+    .btn-download{border:1px dashed rgba(125,211,252,0.35);background:rgba(125,211,252,0.06)}
 
     /* SIDEBAR */
-    .sidebar{padding:18px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);height:100%}
+    .sidebar{padding:18px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
     .photo{height:120px;width:120px;border-radius:14px;background:linear-gradient(135deg,#1e293b,#0f1724);display:flex;align-items:center;justify-content:center;font-weight:700}
     .info{margin-top:12px;font-size:14px;color:var(--muted)}
 
-    /* SECTIONS */
     section{margin:28px 0}
-    h2{font-size:20px;margin:0 0 12px 0}
+    h2{font-size:20px;margin:0 0 12px}
     .timeline{display:flex;flex-direction:column;gap:12px}
-    .time-item{background:var(--card);padding:14px;border-radius:12px;display:flex;gap:12px;align-items:flex-start}
+    .time-item{background:var(--card);padding:14px;border-radius:12px;display:flex;gap:12px}
     .time-date{min-width:90px;color:var(--muted);font-size:13px}
-    .time-content{flex:1}
-    .bullets{margin:8px 0 0 0;padding-left:18px;color:#cfe8ff}
+    .bullets{margin:8px 0 0;padding-left:18px;color:#cfe8ff}
 
     .skills{display:flex;flex-wrap:wrap;gap:10px}
-    .skill{background:var(--glass);padding:8px 12px;border-radius:999px;font-weight:600;color:#dff6ff}
+    .skill{background:var(--glass);padding:8px 12px;border-radius:999px;font-weight:600}
 
     .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-    .project{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:14px;border-radius:12px;min-height:140px;display:flex;flex-direction:column;justify-content:space-between}
-    .proj-title{font-weight:700}
-    .proj-desc{color:var(--muted);font-size:13px}
+    .project{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:14px;border-radius:12px;min-height:140px}
 
     .contact{display:flex;flex-direction:column;gap:12px}
-    .contact a{display:inline-flex;gap:8px;align-items:center}
 
-    /* Footer */
-    footer{opacity:0.6;font-size:13px;margin-top:28px}
+    footer{opacity:.6;font-size:13px;margin-top:28px}
 
-    /* Animations & hover */
-    .project:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 20px 40px rgba(0,0,0,0.5)}
-    .time-item:hover{transform:translateX(6px)}
-    .photo:hover{transform:scale(1.02)}
-    .btn:hover{transform:translateY(-4px)}
     .reveal{opacity:0;transform:translateY(12px)}
 
-    /* Responsive */
-    @media (max-width:880px){
-      .hero{grid-template-columns:1fr;}
-      .sidebar{order:2}
+    @media(max-width:880px){
+      .hero{grid-template-columns:1fr}
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="hero">
-      <div class="hero-card">
-        <p class="name">JAGADEESH VENKATA PAVAN CHITTINEEDI</p>
-        <p class="title">Software Analyst · Software Developer — Hyderabad</p>
-        <p class="summary">I build secure, data‑driven solutions and dashboards that help teams make better decisions. Skilled in data analysis, Power BI, React Native, PHP, MySQL and automation. I ship reliable work with a focus on performance and clarity.</p>
-        <div class="cta">
-          <a class="btn btn-primary" href="#projects">View Projects</a>
-          <a class="btn" href="#contact">Contact</a>
-        </div>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-card">
+      <p class="name">JAGADEESH VENKATA PAVAN CHITTINEEDI</p>
+      <p class="title">Software Analyst · Software Developer — Hyderabad</p>
+      <p class="summary">
+        I build secure, data-driven solutions and dashboards that help teams make better decisions.
+        Skilled in data analysis, Power BI, React Native, PHP, MySQL and automation.
+      </p>
+
+      <!-- CTA BUTTONS (DOWNLOAD BUTTON ADDED HERE) -->
+      <div class="cta">
+        <a class="btn btn-primary" href="#projects">View Projects</a>
+
+        <a class="btn btn-download"
+           href="https://drive.google.com/file/d/FILE_ID/view?usp=sharing"
+           target="_blank"
+           rel="noopener">
+          ⬇ Download Resume
+        </a>
+
+        <a class="btn" href="#contact">Contact</a>
       </div>
-
-      <aside class="sidebar hero-card">
-        <div style="display:flex;gap:12px;align-items:center">
-          <div class="photo">JV
-          </div>
-          <div>
-            <div style="font-weight:700">Kondapur, Hyderabad</div>
-            <div class="info">chittineedi071@gmail.com<br>+91 9666586792<br><a href="https://linkedin.com/in/jagadeesh-chittineedi-170406236" target="_blank">linkedin.com/in/jagadeesh-chittineedi-170406236</a></div>
-          </div>
-        </div>
-
-        <hr style="margin:14px 0;border:0;border-top:1px solid rgba(255,255,255,0.03)">
-        <div>
-          <div style="font-weight:700;margin-bottom:8px">Core Skills</div>
-          <div class="skills">
-            <span class="skill">HTML</span>
-            <span class="skill">CSS</span>
-            <span class="skill">JavaScript</span>
-            <span class="skill">React</span>
-            <span class="skill">React Native</span>
-            <span class="skill">PHP</span>
-            <span class="skill">MySQL</span>
-            <span class="skill">Power BI</span>
-            <span class="skill">Excel</span>
-          </div>
-        </div>
-      </aside>
     </div>
 
-    <!-- Timeline / Experience -->
-    <section id="experience">
-      <h2>Timeline — Experience & Impact</h2>
-      <div class="timeline">
-        <div class="time-item reveal">
-          <div class="time-date">12/2024 — Present</div>
-          <div class="time-content">
-            <div style="font-weight:700">Analyst — Teleperformance (Hyderabad)</div>
-            <ul class="bullets">
-              <li>Created visualizations and reports that reduced false positives by 10% and improved platform reliability.</li>
-              <li>Automated reporting workflows in Excel to save stakeholder time and cut manual work.</li>
-              <li>Streamlined data analysis processes and introduced automation tools to boost efficiency.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="time-item reveal">
-          <div class="time-date">07/2023 — 09/2024</div>
-          <div class="time-content">
-            <div style="font-weight:700">Software Developer — Receptum Software Solutions</div>
-            <ul class="bullets">
-              <li>Designed 3+ cross-platform apps (React Native + PHP + MySQL) raising operational efficiency by ~20%.</li>
-              <li>Optimized APIs and integrations — reduced unused data storage by 25%.</li>
-              <li>Collaborated with designers & QA to deliver responsive UIs and 100% on-time deliveries.</li>
-            </ul>
+    <aside class="sidebar hero-card">
+      <div style="display:flex;gap:12px">
+        <div class="photo">JV</div>
+        <div>
+          <div style="font-weight:700">Kondapur, Hyderabad</div>
+          <div class="info">
+            chittineedi071@gmail.com<br>
+            +91 9666586792<br>
+            <a href="https://linkedin.com/in/jagadeesh-chittineedi-170406236" target="_blank">LinkedIn</a>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills">
-      <h2>Skills & Tools</h2>
-      <div class="skills reveal" style="margin-top:8px">
-        <span class="skill">HTML</span>
-        <span class="skill">CSS</span>
-        <span class="skill">JavaScript</span>
-        <span class="skill">React</span>
-        <span class="skill">React Native</span>
-        <span class="skill">PHP</span>
-        <span class="skill">MySQL</span>
-        <span class="skill">Power BI</span>
-        <span class="skill">MS Excel</span>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects">
-      <h2>Selected Projects</h2>
-      <div class="projects">
-        <div class="project reveal">
-          <div>
-            <div class="proj-title">Criminal Verification App</div>
-            <div class="proj-desc">React Native + MySQL — Mobile app for police to verify individuals using camera capture, secure image storage and GPS tracking. Role-based access and storage optimizations reduced unused data by 20%.</div>
-          </div>
-          <div style="margin-top:10px">
-            <a class="btn" href="#" onclick="openDemo(event,'cvapp')">Live demo</a>
-          </div>
-        </div>
-
-        <div class="project reveal">
-          <div>
-            <div class="proj-title">Attendance Mobile App</div>
-            <div class="proj-desc">React Native + PHP — GPS-based employee attendance with automated reports, cutting manual entry time by 40% and improving accuracy.</div>
-          </div>
-          <div style="margin-top:10px">
-            <a class="btn" href="#" onclick="openDemo(event,'attend')">Live demo</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="contact reveal">
-        <div>I'm open to roles in data analysis, full‑stack development, and product engineering. Let's build something useful.</div>
-        <a href="mailto:chittineedi071@gmail.com">✉️ chittineedi071@gmail.com</a>
-        <a href="tel:+919666586792">📞 +91 9666586792</a>
-        <a href="https://linkedin.com/in/jagadeesh-chittineedi-170406236" target="_blank">🔗 LinkedIn</a>
-      </div>
-    </section>
-
-    <footer>Resume source & details adapted from the uploaded PDF.</footer>
+    </aside>
   </div>
 
-  <script>
-    // small helper for demo buttons
-    function openDemo(e,id){ e.preventDefault(); alert('Demo placeholder: '+id+' — replace with real demo links or screenshots.'); }
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact reveal">
+      <a href="mailto:chittineedi071@gmail.com">✉️ Email</a>
+      <a href="tel:+919666586792">📞 Call</a>
+    </div>
+  </section>
 
-    // GSAP entrance animations
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.utils.toArray('.reveal').forEach((el,i)=>{
-      gsap.fromTo(el,{opacity:0,y:18},{opacity:1,y:0,duration:0.8,delay:0.06*i,ease:'power3.out',scrollTrigger:{trigger:el, start:'top 85%'}})
-    })
+  <footer>Resume source & details adapted from the uploaded PDF.</footer>
 
-    // subtle hero micro-interaction
-    const heroName = document.querySelector('.name');
-    heroName.addEventListener('mousemove', (e)=>{
-      const rX = (e.clientX - window.innerWidth/2)/40;
-      const rY = (e.clientY - window.innerHeight/2)/60;
-      heroName.style.transform = `rotateX(${ -rY }deg) rotateY(${ rX }deg) translateZ(0)`;
-    });
-    heroName.addEventListener('mouseleave', ()=>{ heroName.style.transform='none' });
+</div>
 
-    // Simple accessibility: reduce motion if user prefers
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.killTweensOf('.reveal');
-      document.querySelectorAll('.reveal').forEach(el=>el.style.opacity=1);
-    }
-  </script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.utils.toArray('.reveal').forEach(el=>{
+    gsap.fromTo(el,{opacity:0,y:18},{opacity:1,y:0,duration:.8,scrollTrigger:{trigger:el,start:'top 85%'}})
+  });
+</script>
+
 </body>
 </html>
