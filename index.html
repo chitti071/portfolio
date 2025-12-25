@@ -20,19 +20,19 @@
       --muted:#94a3b8;
       --glass: rgba(255,255,255,0.03);
       --radius:18px;
-      font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
       color-scheme: dark;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;background:linear-gradient(180deg,var(--bg),#071028);color:#e6eef8}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#071028);color:#e6eef8}
     a{color:var(--accent);text-decoration:none}
     .container{max-width:1100px;margin:0 auto;padding:36px}
 
     /* HERO */
     .hero{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:center;margin-bottom:28px}
-    .hero-card{background:linear-gradient(135deg,rgba(125,211,252,0.04),transparent);padding:36px;border-radius:18px;backdrop-filter:blur(6px);box-shadow:0 6px 30px rgba(0,0,0,0.6)}
+    .hero-card{background:linear-gradient(135deg,rgba(125,211,252,0.04),transparent);padding:36px;border-radius:var(--radius);backdrop-filter:blur(6px);box-shadow:0 6px 30px rgba(0,0,0,0.6)}
     .name{font-size:28px;font-weight:800;margin:0}
-    .title{color:var(--muted);margin:6px 0 16px}
+    .title{color:var(--muted);margin-top:6px;margin-bottom:16px}
     .summary{line-height:1.6;color:#dbeafe}
     .cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
     .btn{background:transparent;border:1px solid rgba(125,211,252,0.18);padding:10px 14px;border-radius:12px;cursor:pointer}
@@ -40,7 +40,7 @@
     .btn-download{border:1px dashed rgba(125,211,252,0.35);background:rgba(125,211,252,0.06)}
 
     /* SIDEBAR */
-    .sidebar{padding:18px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+    .sidebar{padding:18px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
     .photo{height:120px;width:120px;border-radius:14px;background:linear-gradient(135deg,#1e293b,#0f1724);display:flex;align-items:center;justify-content:center;font-weight:700}
     .info{margin-top:12px;font-size:14px;color:var(--muted)}
 
@@ -52,14 +52,13 @@
     .bullets{margin:8px 0 0;padding-left:18px;color:#cfe8ff}
 
     .skills{display:flex;flex-wrap:wrap;gap:10px}
-    .skill{background:var(--glass);padding:8px 12px;border-radius:999px;font-weight:600}
+    .skill{background:var(--glass);padding:8px 12px;border-radius:999px;font-weight:600;color:#dff6ff}
 
     .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-    .project{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:14px;border-radius:12px;min-height:140px}
+    .project{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:14px;border-radius:12px;min-height:140px;display:flex;flex-direction:column;justify-content:space-between}
 
     .contact{display:flex;flex-direction:column;gap:12px}
-
-    footer{opacity:.6;font-size:13px;margin-top:28px}
+    footer{opacity:0.6;font-size:13px;margin-top:28px}
 
     .reveal{opacity:0;transform:translateY(12px)}
 
@@ -82,7 +81,7 @@
         Skilled in data analysis, Power BI, React Native, PHP, MySQL and automation.
       </p>
 
-      <!-- CTA BUTTONS (DOWNLOAD BUTTON ADDED HERE) -->
+      <!-- CTA (ONLY ADDITION IS DOWNLOAD BUTTON) -->
       <div class="cta">
         <a class="btn btn-primary" href="#projects">View Projects</a>
 
@@ -105,12 +104,73 @@
           <div class="info">
             chittineedi071@gmail.com<br>
             +91 9666586792<br>
-            <a href="https://linkedin.com/in/jagadeesh-chittineedi-170406236" target="_blank">LinkedIn</a>
+            <a href="https://linkedin.com/in/jagadeesh-chittineedi-170406236" target="_blank">
+              linkedin.com/in/jagadeesh-chittineedi-170406236
+            </a>
           </div>
         </div>
       </div>
     </aside>
   </div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2>Timeline — Experience & Impact</h2>
+    <div class="timeline">
+      <div class="time-item reveal">
+        <div class="time-date">12/2024 — Present</div>
+        <div>
+          <b>Analyst — Teleperformance</b>
+          <ul class="bullets">
+            <li>Reduced false positives by 10% through improved reports.</li>
+            <li>Automated Excel workflows to save manual effort.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="time-item reveal">
+        <div class="time-date">07/2023 — 09/2024</div>
+        <div>
+          <b>Software Developer — Receptum Software Solutions</b>
+          <ul class="bullets">
+            <li>Built 3+ React Native apps improving efficiency by 20%.</li>
+            <li>Optimized APIs reducing unused storage by 25%.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills & Tools</h2>
+    <div class="skills reveal">
+      <span class="skill">HTML</span>
+      <span class="skill">CSS</span>
+      <span class="skill">JavaScript</span>
+      <span class="skill">React</span>
+      <span class="skill">React Native</span>
+      <span class="skill">PHP</span>
+      <span class="skill">MySQL</span>
+      <span class="skill">Power BI</span>
+      <span class="skill">Excel</span>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Selected Projects</h2>
+    <div class="projects">
+      <div class="project reveal">
+        <b>Criminal Verification App</b>
+        <p class="proj-desc">React Native + MySQL police verification app.</p>
+      </div>
+      <div class="project reveal">
+        <b>Attendance Mobile App</b>
+        <p class="proj-desc">GPS-based attendance system.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- CONTACT -->
   <section id="contact">
@@ -118,6 +178,7 @@
     <div class="contact reveal">
       <a href="mailto:chittineedi071@gmail.com">✉️ Email</a>
       <a href="tel:+919666586792">📞 Call</a>
+      <a href="https://linkedin.com/in/jagadeesh-chittineedi-170406236" target="_blank">🔗 LinkedIn</a>
     </div>
   </section>
 
@@ -128,7 +189,7 @@
 <script>
   gsap.registerPlugin(ScrollTrigger);
   gsap.utils.toArray('.reveal').forEach(el=>{
-    gsap.fromTo(el,{opacity:0,y:18},{opacity:1,y:0,duration:.8,scrollTrigger:{trigger:el,start:'top 85%'}})
+    gsap.fromTo(el,{opacity:0,y:18},{opacity:1,y:0,duration:0.8,scrollTrigger:{trigger:el,start:'top 85%'}})
   });
 </script>
 
